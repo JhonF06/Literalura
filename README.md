@@ -32,3 +32,16 @@ FUNCIONALIDADES
 6. Buscar autor por nombre
    - Funcion que permite realizar la busqueda de libros guardados en la base de datos solo por el nombre del autor
             
+Tecnologías Utilizadas
+
+1.Java 23
+   *Lenguaje de programación principal utilizado para el desarrollo.
+
+2.Spring Boot
+   *Framework para la creación de aplicaciones Java robustas y escalables.
+   
+3.Maven
+   *Herramienta de gestión de dependencias y construcción del proyecto.
+
+4.Gutendex API
+   *API utilizada para acceder a datos sobre libros y autores de manera remota.
