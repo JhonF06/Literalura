@@ -35,47 +35,57 @@ public class Principal {
     public void menuOpciones() {
         var opcion = -1;
         while (opcion != 0) {
-            var menu = """
-                        ****Bienvenidos a LiterAlura*****
-                            ****** Menu ******
-                    1 - Buscar libro por titulo
-                    2 - Lista de todos los libros
-                    3 - Lista de los autores
-                    4 - Lista autores vivos en deteminado año
-                    5 - Lista libros por idioma
-                    6 - Buscar autor por Nombre
-                    
-                    0 - Salir
-                    
-                    """;
-            System.out.println(menu);
-            opcion = teclado.nextInt();
-            teclado.nextLine();
+            try {
+                var menu = """
+                            ****Bienvenidos a LiterAlura*****
+                                ****** Menu ******
+                        1 - Buscar libro por titulo
+                        2 - Lista de todos los libros
+                        3 - Lista de los autores
+                        4 - Lista autores vivos en determinado año
+                        5 - Lista libros por idioma
+                        6 - Buscar autor por Nombre
+                        
+                        0 - Salir
+                        
+                        """;
+                System.out.println(menu);
+                if (teclado.hasNextInt()) {
+                    opcion = teclado.nextInt();
+                    teclado.nextLine();
 
-            switch (opcion) {
-                case 1:
-                    buscarLibroPorTitulo();
-                    break;
-                case 2:
-                    listaLibrosGuardados();
-                    break;
-                case 3:
-                    listaDeAutoresRegistrados();
-                    break;
-                case 4:
-                    listaAutoresVivosPorFecha();
-                    break;
-                case 5:
-                    filtrarLibrosPorIdioma();
-                    break;
-                case 6:
-                    buscarAutorPorNombre();
-                    break;
-                case 0:
-                    System.out.println("Finalizando la aplicación....");
-                    break;
-                default:
-                    System.out.println("Opción no es valida, escoje una entre el menu");
+                    switch (opcion) {
+                        case 1:
+                            buscarLibroPorTitulo();
+                            break;
+                        case 2:
+                            listaLibrosGuardados();
+                            break;
+                        case 3:
+                            listaDeAutoresRegistrados();
+                            break;
+                        case 4:
+                            listaAutoresVivosPorFecha();
+                            break;
+                        case 5:
+                            filtrarLibrosPorIdioma();
+                            break;
+                        case 6:
+                            buscarAutorPorNombre();
+                            break;
+                        case 0:
+                            System.out.println("Finalizando la aplicación....");
+                            break;
+                        default:
+                            System.out.println("Opción no es valida, escoje una entre el menu");
+                    }
+                } else {
+                    System.out.println("Entrada no valida, por favor ingrese un numero.");
+                    teclado.nextLine();
+                }
+            } catch (Exception e) {
+                System.out.println("Ocurrio un error: " + e.getMessage());
+                teclado.nextLine();
             }
         }
     }
@@ -84,7 +94,7 @@ public class Principal {
         var tituloLibro = teclado.nextLine();
         var json = consumoApi.obtenerDatos(URL_BASE + "?search=" + tituloLibro.replace(" ", "%20"));
         Datos datosBuscados = conversor.obtenerDatos(json, Datos.class);
-        System.out.println(json);
+       // System.out.println(json);
         return datosBuscados;
     }
 
